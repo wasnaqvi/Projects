@@ -95,7 +95,7 @@ kes = 0.02*(1+X)
 #Average of the summ of the kbf, kes, kff opacities
 K= (kbf + kff + kes)/3
 
-"""
+
 # Log K vs Log T
 plt.plot(np.log(df["T"]), np.log10(K), label="Rosseland Mean Opacity")
 
@@ -104,8 +104,7 @@ plt.ylabel(r"$\log\ K$")
 plt.title(r"$\mathrm{Rosseland\ Mean\ Opacity\ against\ Temperature\ on a Log Scale}$")
 plt.legend()
 
-plt.show()"""
-
+plt.show()
 
 # Plotting K vs Radius of the Sun
 plt.plot(df["R/Rsun"], K, label="Rosseland Mean Opacity")
@@ -116,3 +115,40 @@ plt.legend()
 
 plt.show()
 
+
+# Plotting $\delta ln(\P)/\delta ln(\T))$ against R/Rsun
+'''
+np.diff(array). The resulting array will have a length one less than the array you started with, so if you’re
+plotting np.diff(array) as a function of x and x has the same length as array, you’ll want to throw out
+the last element of x: “x[:-1]”, so you’ll run something like plt.plot(x[:-1], np.diff(array))
+'''
+dPdT = np.diff(np.log(df["P"]))/np.diff(np.log(df["T"]))
+plt.plot(df["R/Rsun"][:-1], dPdT, label=r"$\frac{\delta ln(P)}{\delta ln(T)}$")
+plt.xlabel(r"$\mathrm{R/R}_\odot$")
+plt.ylabel(r"$\frac{\delta ln(P)}{\delta ln(T)}$")
+plt.title(r"$\mathrm{Rate\ of\ change\ of\ Pressure\ with\ Temperature\ against\ radius\ of\ the\ Sun}$")
+plt.legend()
+
+plt.show()
+
+# The plot is not smooth.
+'''
+s. I find it works best to separately smooth ∆ ln P and ∆ ln T before
+calculating the derivative. There are lots of smoothing algorithms; I find that the Savgol filter works pretty
+well. In python, first run from scipy.signal import savgol filter. Then savgol filter(array, 5,
+3) smooths array 5 cells at a time with a third-order polynomial; you’ll want to experiment to find how
+many zones works well for smoothing.
+REFERENCES
+Bahcall, J. N., Pinsonneault, M. H., & Basu, S. 2001, ApJ, 555, 990
+
+'''
+from scipy.signal import savgol_filter
+# Smooth the Pressure and Temperature
+dPdT_smooth = savgol_filter(dPdT, 5, 3)
+plt.plot(df["R/Rsun"][:-1], dPdT_smooth, label=r"$\frac{\delta ln(P)}{\delta ln(T)}$")
+plt.xlabel(r"$\mathrm{R/R}_\odot$")
+plt.ylabel(r"$\frac{\delta ln(P)}{\delta ln(T)}$")
+plt.title(r"$\mathrm{Smoothed Rate\ of\ change\ of\ Pressure\ with\ Temperature\ against\ radius\ of\ the\ Sun}$")
+plt.legend()
+
+plt.show()

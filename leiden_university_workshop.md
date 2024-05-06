@@ -1,4 +1,0 @@
-# Leiden University Workshop
-
-```{tableofcontents}
-```

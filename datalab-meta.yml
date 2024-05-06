@@ -1,0 +1,33 @@
+# More info here: https://datalabs.esa.int/help
+# Datalabs >> Datalabs Editor GUI >> Scientific Developer >> Datalab Creation #2
+
+# Mandadory fields
+title: Pyxel datalab
+alternateName: Pyxel Framework
+abstract: Pyxel is a novel, open-source, modular Python software framework designed to host and pipeline models 
+  (analytical, numerical, statistical) simulating different types of detector effects on images produced by 
+  Charge-Coupled Devices (CCD), Monolithic, and Hybrid CMOS imaging sensors.
+version: 2.1.1
+
+# Recommended fields
+creator.name: Frederic Lemmel
+description: Pyxel simulator with Jupyter notebook examples.
+# instrument: None
+# mission: None
+
+# Optional fields
+citation: https://ascl.net/2301.002
+contactPoint:
+  email: pyxel@esa.int
+  organisation-name: ESA
+distribution.license: MIT
+# doi.notation: DOI of your datalab (either existing one or assigned by ESA)
+
+language: english
+thumbnailUrl: https://esa.gitlab.io/pyxel-data/pyxel-logo.svg
+keywords:  # keywords from the Unified Astronomy Thesaurus (https://astrothesaurus.org/)
+  - simulation
+  - CCD
+  - CMOS
+  - detector
+  - MKID

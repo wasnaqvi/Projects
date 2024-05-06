@@ -1,4 +1,0 @@
-# Observation
-
-```{tableofcontents}
-```

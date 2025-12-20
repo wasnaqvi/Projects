@@ -1,0 +1,6 @@
+*.png
+*.txt
+/ariel_spectroscopy_outputs/
+/outputs
+/outputs_ariel_bnn
+*.csv
